@@ -1,87 +1,353 @@
-<!DOCTYPE html>
+
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Transaksi - Chaira Bakery</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff8f0;
+      color: #333;
+    }
+    header {
+      background: #d4a76a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    nav {
+      background: #e8c39e;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #5a3e2b;
+      font-weight: bold;
+    }
+    .container {
+      padding: 25px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .form-box, .invoice-box {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 25px;
+    }
+    h2 {
+      color: #5a3e2b;
+      margin-top: 0;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      color: #5a3e2b;
+      margin-bottom: 6px;
+    }
+    input[type="text"],
+    input[type="tel"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #d4a76a;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    small {
+      color: #777;
+      display: block;
+      margin-top: 4px;
+    }
+    .radio-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: normal;
+      cursor: pointer;
+    }
+    .radio-group input {
+      margin-right: 8px;
+    }
+    .btn-group {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .btn-back {
+      background: #e8c39e;
+      color: #5a3e2b;
+      padding: 10px 25px;
+      text-decoration: none;
+      border-radius: 8px;
+      display: inline-block;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    .btn-submit {
+      background: #5a3e2b;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    footer {
+      background: #5a3e2b;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+    .hidden {
+      display: none;
+    }
+
+    /* === INVOICE STYLE ALA SHOPEE === */
+    .invoice {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .invoice-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .invoice-header h2 {
+      margin: 0;
+      font-size: 20px;
+      color: #5a3e2b;
+    }
+    .invoice-header p {
+      color: #777;
+      margin: 5px 0 0;
+      font-size: 14px;
+    }
+    .invoice-id {
+      background: #f9f5f0;
+      padding: 8px;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: bold;
+      margin: 15px 0;
+      color: #5a3e2b;
+    }
+    .invoice-section {
+      margin: 15px 0;
+    }
+    .invoice-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 8px 0;
+    }
+    .invoice-label {
+      font-weight: bold;
+      color: #5a3e2b;
+    }
+    .invoice-value {
+      text-align: right;
+      max-width: 60%;
+      word-break: break-word;
+    }
+    .invoice-hr {
+      height: 1px;
+      background: #e8c39e;
+      margin: 18px 0;
+    }
+    .status-badge {
+      display: inline-block;
+      background: #fff3e0;
+      color: #e65100;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+    .note {
+      font-style: italic;
+      color: #777;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    .btn-save {
+      background: #d4a76a;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+  </style>
 </head>
-<body style="margin: 0; font-family: Arial, sans-serif; background: #fff8f0;">
-  <header style="background: #d4a76a; color: white; text-align: center; padding: 20px;">
-    <h1>FORM TRANS
+<body>
+  <header>
+    <h1>FORM TRANSAKSI</h1>
   </header>
-  <nav style="background: #e8c39e; padding: 10px; text-align: center;">
-    <a href="index.html" style="margin: 0 15px; text-decoration: none; color: #5a3e2b; font-weight: bold;">Beranda</a>
+  <nav>
+    <a href="index.html">Beranda</a>
   </nav>
 
-  <div style="padding: 25px; max-width: 800px; margin: 0 auto;">
-    <div style="background: white; border-radius: 10px; box-shadow: 0 3px 8px rgba(0,0,0,0.1); padding: 25px;">
+  <div class="container">
+    <!-- Form Transaksi -->
+    <div id="form-section" class="form-box">
+      <h2>👤 Data Pembeli</h2>
+      <label for="nama">Nama Lengkap</label>
+      <input type="text" id="nama" required>
 
-      <h2 style="color: #5a3e2b; margin-top: 0;">👤 Data Pembeli</h2>
-      <p>
-        <label for="nama" style="display: block; font-weight: bold; color: #5a3e2b; margin-bottom: 6px;">Nama Lengkap</label>
-        <input type="text" id="nama" name="nama" required
-               style="width: 100%; padding: 10px; border: 1px solid #d4a76a; border-radius: 6px; font-size: 16px;">
-      </p>
-      <p>
-        <label for="wa" style="display: block; font-weight: bold; color: #5a3e2b; margin-bottom: 6px;">Nomor WhatsApp</label>
-        <input type="tel" id="wa" name="wa" required
-               style="width: 100%; padding: 10px; border: 1px solid #d4a76a; border-radius: 6px; font-size: 16px;">
-        <small style="color: #777; display: block; margin-top: 4px;">Contoh: 081234567890</small>
-      </p>
-      <p>
-        <label for="alamat" style="display: block; font-weight: bold; color: #5a3e2b; margin-bottom: 6px;">Alamat Lengkap</label>
-        <textarea id="alamat" name="alamat" rows="3" required
-                  style="width: 100%; padding: 10px; border: 1px solid #d4a76a; border-radius: 6px; font-size: 16px;"></textarea>
-      </p>
+      <label for="wa">Nomor WhatsApp</label>
+      <input type="tel" id="wa" required>
+      <small>Contoh: 081234567890</small>
 
-      <h2 style="color: #5a3e2b; margin-top: 30px;">🚚 Pilih Ekspedisi</h2>
-      <p>
-        </label>
-        <label style="display: block; margin-bottom: 8px;">
-          <input type="radio" name="ekspedisi" value="jnt" style="margin-right: 8px;"> GoSend (Same Day)
-        </label>
-        <label style="display: block; margin-bottom: 8px;">
-          <input type="radio" name="ekspedisi" value="sicepat" style="margin-right: 8px;"> Paxel (Same Day)
-        </label>
-        <label style="display: block; margin-bottom: 8px;">
-          <input type="radio" name="ekspedisi" value="anteraja" style="margin-right: 8px;"> JNE Express (Same Day)
-        </label>
-        <label style="display: block; margin-bottom: 8px;">
-          <input type="radio" name="ekspedisi" value="grab" style="margin-right: 8px;"> GrabExpress (Same Day)
-        </label>
-        <label style="display: block;">
-          <input type="radio" name="ekspedisi" value="ambil_sendiri" style="margin-right: 8px;"> Ambil Sendiri di Toko (Jl. Dipatiukur No. 100, Bandung)
-        </label>
-      </p>
+      <label for="alamat">Alamat Lengkap</label>
+      <textarea id="alamat" rows="3" required></textarea>
 
-      <h2 style="color: #5a3e2b; margin-top: 30px;">💳 Metode Pembayaran</h2>
-      <p>
-        <label style="display: block; margin-bottom: 8px;">
-          <input type="radio" name="pembayaran" value="transfer" style="margin-right: 8px;" required> Transfer Bank (BCA / Mandiri / BNI)
-        </label>
-        <label style="display: block; margin-bottom: 8px;">
-          <input type="radio" name="pembayaran" value="qris" style="margin-right: 8px;"> QRIS (Scan via GoPay, OVO, DANA, dll)
-        </label>
-        <label style="display: block;">
-          <input type="radio" name="pembayaran" value="cod" style="margin-right: 8px;"> Bayar di Tempat (COD) — Hanya untuk wilayah Bandung
-        </label>
-      </p>
-
-      <div style="margin-top: 30px; text-align: center;">
-        <a href="javascript:history.back()" 
-           style="background: #e8c39e; color: #5a3e2b; padding: 10px 25px; text-decoration: none; border-radius: 6px; display: inline-block; margin-right: 10px; font-weight: bold;">
-          ← Kembali
-        </a>
-        <button type="submit" 
-                style="background: #5a3e2b; color: white; padding: 12px 30px; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer;">
-          Kirim Pesanan
-        </button>
+      <h2>🚚 Pilih Ekspedisi</h2>
+      <div class="radio-group">
+        <label><input type="radio" name="ekspedisi" value="GoSend (Same Day)"> GoSend (Same Day)</label>
+        <label><input type="radio" name="ekspedisi" value="Paxel (Same Day)"> Paxel (Same Day)</label>
+        <label><input type="radio" name="ekspedisi" value="JNE Express (Same Day)"> JNE Express (Same Day)</label>
+        <label><input type="radio" name="ekspedisi" value="GrabExpress (Same Day)"> GrabExpress (Same Day)</label>
+        <label><input type="radio" name="ekspedisi" value="Ambil Sendiri di Toko (Jl. Dipatiukur No. 100, Bandung)"> Ambil Sendiri di Toko (Jl. Dipatiukur No. 100, Bandung)</label>
       </div>
 
+      <h2>💳 Metode Pembayaran</h2>
+      <div class="radio-group">
+        <label><input type="radio" name="pembayaran" value="Transfer Bank (BCA / Mandiri / BNI)" required> Transfer Bank (BCA / Mandiri / BNI)</label>
+        <label><input type="radio" name="pembayaran" value="QRIS (Scan via GoPay, OVO, DANA, dll)"> QRIS (Scan via GoPay, OVO, DANA, dll)</label>
+        <label><input type="radio" name="pembayaran" value="Bayar di Tempat (COD) — Hanya untuk wilayah Bandung"> Bayar di Tempat (COD) — Hanya untuk wilayah Bandung</label>
+      </div>
+
+      <div class="btn-group">
+        <a href="javascript:history.back()" class="btn-back">← Kembali</a>
+        <button type="button" class="btn-submit" onclick="generateInvoice()">Kirim Pesanan</button>
+      </div>
+    </div>
+
+   
+    <div id="invoice-section" class="form-box hidden">
+      <div class="invoice">
+        <div class="invoice-header">
+          <h2>CHAIRA BAKERY</h2>
+          <p>Homemade with Love & Butter 🧁</p>
+        </div>
+
+        <div class="invoice-id" id="inv-number">Pesanan #<span id="order-id"></span></div>
+
+        <div class="invoice-section">
+          <div class="invoice-row">
+            <span class="invoice-label">Tanggal</span>
+            <span class="invoice-value" id="inv-date"></span>
+          </div>
+          <div class="invoice-row">
+            <span class="invoice-label">Status</span>
+            <span class="invoice-value"><span class="status-badge">Menunggu Konfirmasi</span></span>
+          </div>
+        </div>
+
+        <div class="invoice-hr"></div>
+
+        <div class="invoice-section">
+          <div class="invoice-row">
+            <span class="invoice-label">Nama</span>
+            <span class="invoice-value" id="inv-nama"></span>
+          </div>
+          <div class="invoice-row">
+            <span class="invoice-label">WhatsApp</span>
+            <span class="invoice-value" id="inv-wa"></span>
+          </div>
+          <div class="invoice-row">
+            <span class="invoice-label">Alamat</span>
+            <span class="invoice-value" id="inv-alamat"></span>
+          </div>
+        </div>
+
+        <div class="invoice-hr"></div>
+
+        <div class="invoice-section">
+          <div class="invoice-row">
+            <span class="invoice-label">Ekspedisi</span>
+            <span class="invoice-value" id="inv-ekspedisi"></span>
+          </div>
+          <div class="invoice-row">
+            <span class="invoice-label">Pembayaran</span>
+            <span class="invoice-value" id="inv-pembayaran"></span>
+          </div>
+        </div>
+
+        <p class="note">Tim kami akan menghubungi Anda dalam 1x24 jam.</p>
+
+        <div style="text-align: center; margin-top: 20px;">
+          <button type="button" class="btn-save" onclick="window.print()">🖨️ Simpan/Cetak Struk</button>
+          <br><br>
+          <button type="button" class="btn-back" onclick="backToForm()">← Edit Pesanan</button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <footer style="background: #5a3e2b; color: white; text-align: center; padding: 15px; margin-top: 30px;">
-    &copy; 2025 Chaira Bakery — Homemade with Love & Butter
+  <footer>
+    &copy; 2026 Chaira Bakery — Jl. Dipatiukur No. 100, Bandung
   </footer>
+
+  <script>
+    function generateInvoice() {
+      const nama = document.getElementById('nama').value.trim();
+      const wa = document.getElementById('wa').value.trim();
+      const alamat = document.getElementById('alamat').value.trim();
+      const ekspedisi = document.querySelector('input[name="ekspedisi"]:checked');
+      const pembayaran = document.querySelector('input[name="pembayaran"]:checked');
+
+      if (!nama || !wa || !alamat) {
+        alert('Mohon lengkapi semua data pembeli!');
+        return;
+      }
+      if (!ekspedisi) {
+        alert('Silakan pilih ekspedisi!');
+        return;
+      }
+      if (!pembayaran) {
+        alert('Silakan pilih metode pembayaran!');
+        return;
+      }
+
+      // Generate nomor pesanan unik (timestamp)
+      const now = new Date();
+      const orderId = 'CB' + now.getTime().toString().slice(-6);
+      const dateStr = now.toLocaleDateString('id-ID', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+
+      // Isi data ke struk
+      document.getElementById('order-id').textContent = orderId;
+      document.getElementById('inv-date').textContent = dateStr;
+      document.getElementById('inv-nama').textContent = nama;
+      document.getElementById('inv-wa').textContent = wa;
+      document.getElementById('inv-alamat').textContent = alamat;
+      document.getElementById('inv-ekspedisi').textContent = ekspedisi.value;
+      document.getElementById('inv-pembayaran').textContent = pembayaran.value;
+
+      // Tampilkan struk
+      document.getElementById('form-section').classList.add('hidden');
+      document.getElementById('invoice-section').classList.remove('hidden');
+    }
+
+    function backToForm() {
+      document.getElementById('invoice-section').classList.add('hidden');
+      document.getElementById('form-section').classList.remove('hidden');
+    }
+  </script>
 </body>
 </html>
